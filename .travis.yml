@@ -3,7 +3,16 @@ node_js:
   - '12'
   - '10'
   - '8'
-script:
-  - npm run test && npm run build
+  - node
 notifications:
   email: false
+jobs:
+  include:
+    - stage: Build
+      script: npm run build
+    - stage: Test
+      script: npm run test
+    - stage: Produce Coverage
+      node_js: node
+      script: npm run report-coverage
+
