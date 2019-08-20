@@ -4,8 +4,9 @@
   "description": "Unofficial JS binding for the Wealthsimple Trade API",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Error: no build specified\" && exit 1"
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/MarkGalloway/wealthsimple-trade/issues"
   },
-  "homepage": "https://github.com/MarkGalloway/wealthsimple-trade#readme"
+  "homepage": "https://github.com/MarkGalloway/wealthsimple-trade#readme",
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.5.3"
+  }
 }
