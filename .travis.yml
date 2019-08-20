@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - node
+  - lts/*
+notifications:
+  email: false
+jobs:
+  include:
+    - stage: Build
+      script: npm run build
+    - stage: Test
+      script: npm run test:prod
+    # - stage: Produce Coverage
+    #   node_js: node
+    #   script: npm run report-coverage
+
