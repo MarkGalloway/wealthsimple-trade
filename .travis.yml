@@ -10,7 +10,7 @@ jobs:
       script: npm run build
     - stage: Test
       script: npm run test:prod
-    - stage: Produce Coverage
-      node_js: node
-      script: npm run report-coverage
+    # - stage: Produce Coverage
+    #   node_js: node
+    #   script: npm run report-coverage
 
