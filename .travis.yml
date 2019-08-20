@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - '12'
-  - '10'
-  - '8'
   - node
+  - lts/*
 notifications:
   email: false
 jobs:
@@ -11,7 +9,7 @@ jobs:
     - stage: Build
       script: npm run build
     - stage: Test
-      script: npm run test
+      script: npm run test:prod
     - stage: Produce Coverage
       node_js: node
       script: npm run report-coverage
