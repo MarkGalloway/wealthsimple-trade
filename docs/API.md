@@ -5,7 +5,8 @@
 ```
 POST https://trade-service.wealthsimple.com/auth/login
 {
-
+    "email": "fred@gmail.com",
+    "password": "WILMA!!!!"
 }
 ```
 
