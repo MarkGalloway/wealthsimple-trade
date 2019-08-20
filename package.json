@@ -1,0 +1,24 @@
+{
+  "name": "wealthsimple-trade",
+  "version": "0.0.1",
+  "description": "Unofficial JS binding for the Wealthsimple Trade API",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Error: no build specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkGalloway/wealthsimple-trade.git"
+  },
+  "keywords": [
+    "wealthsimple",
+    "api"
+  ],
+  "author": "Mark.Galloway@ualberta.ca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarkGalloway/wealthsimple-trade/issues"
+  },
+  "homepage": "https://github.com/MarkGalloway/wealthsimple-trade#readme"
+}
