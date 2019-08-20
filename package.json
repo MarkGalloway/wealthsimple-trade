@@ -1,7 +1,7 @@
 {
   "name": "wealthsimple-trade",
   "version": "0.1.0",
-  "description": "Unofficial JS binding for the Wealthsimple Trade API",
+  "description": "Unofficial JS bindings for the Wealthsimple Trade API",
   "homepage": "https://github.com/MarkGalloway/wealthsimple-trade#readme",
   "keywords": [
     "wealthsimple",
