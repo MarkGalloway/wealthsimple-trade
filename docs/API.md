@@ -57,20 +57,20 @@ User data is sent back in the body:
 ````
 POST https://trade-service.wealthsimple.com/auth/refresh
 {
-    ???
+    "refresh_token": <X-Refresh-Token from initial login request>
 }
 ````
 
 #### Response
 ```
-    ???
+    OK
 ```
 
 
 ### Account
 #### Request
 ````
-GET https://trade-service.wealthsimple.com/account
+GET https://trade-service.wealthsimple.com/account/list
 ````
 
 #### Response
@@ -114,6 +114,66 @@ GET https://trade-service.wealthsimple.com/account
 }
 ```
 
+### Historical Account Data
+#### Request
+````
+GET https://trade-service.wealthsimple.com/account/history/<TIME>?account_id=<ACCOUNT>
+Where TIME is one of [1d, 1w, 1m, 3m, 1y, all]
+Where ACCOUNT is the account id received from /account/list Ex. rrsp-123_abc
+````
+
+#### Response
+```
+{
+    "results": [
+        {
+            "value": {
+                "amount": 1000,
+                "currency": "CAD"
+            },
+            "net_deposits": {
+                "amount": 1000,
+                "currency": "CAD"
+            },
+            "equity_value": {
+                "amount": 0,
+                "currency": "CAD"
+            },
+            "withdrawn_earnings": {
+                "amount": 0,
+                "currency": "CAD"
+            },
+            "date": "2020-01-28",
+            "relative_equity_earnings": {
+                "currency": "CAD",
+                "amount": 0,
+                "percentage": 0
+            },
+            "lastCloseDataPointEquityValue": {
+                "amount": 0,
+                "currency": "CAD"
+            },
+            "dataPointEquityValue": {
+                "amount": 0,
+                "currency": "CAD"
+            }
+        },
+        ...
+    ],
+    "live_relative_equity_earnings_baseline": {
+        "amount": 1234.56,
+        "currency": "CAD"
+    },
+    "live_earnings_baseline": {
+        "amount": 0,
+        "currency": "CAD"
+    },
+    "start_earnings": {
+        "amount": 0,
+        "currency": "CAD"
+    }
+}
+```
 
 ### Get Orders
 This is current and past orders.
@@ -168,12 +228,13 @@ GET https://trade-service.wealthsimple.com/orders
 POST https://trade-service.wealthsimple.com/orders
 {
     {
-	"security_id": "sec-s-76a7155242e8477880cbb43269235cb6",
-	"limit_price": 5.00,
-	"quantity": 100,
-	"order_type": "buy_quantity",
-	"order_sub_type": "limit",
-	"time_in_force": "day"
+        "security_id": "sec-s-76a7155242e8477880cbb43269235cb6",
+        "limit_price": 5.00,
+        "quantity": 100,
+        "order_type": "buy_quantity",
+        "order_sub_type": "limit",
+        "time_in_force": "day"
+    }
 }
 ```
 
@@ -312,7 +373,121 @@ GET https://trade-service.wealthsimple.com/account/positions
 ```
 {
     "results": [
-        ???
+        {
+            "currency": "USD",
+            "security_type": "equity",
+            "ws_trade_eligible": true,
+            "cds_eligible": true,
+            "active_date": "1999-01-22",
+            "inactive_date": null,
+            "active": true,
+            "buyable": true,
+            "sellable": true,
+            "groups": [
+                {
+                    "id": "security-group-3dd224bd2e62",
+                    "name_en": "Manufacturing"
+                },
+                {
+                    "id": "security-group-56c3bcb832e2",
+                    "name_en": "Electronics"
+                },
+                {
+                    "id": "security-group-68432b3cd216",
+                    "name_en": "Semiconductors"
+                },
+                {
+                    "id": "security-group-c02ac2385470",
+                    "name_en": "Software"
+                },
+                {
+                    "id": "security-group-ca56bd46a479",
+                    "name_en": "Engineering"
+                },
+                {
+                    "id": "security-group-cb7e98a45f68",
+                    "name_en": "Internet"
+                },
+                {
+                    "id": "security-group-f68970b1232b",
+                    "name_en": "Technology"
+                }
+            ],
+            "stock": {
+                "country_of_issue": "US",
+                "symbol": "NVDA",
+                "name": "NVIDIA Corp",
+                "description": null,
+                "primary_exchange": "NASDAQ",
+                "secondary_exchanges": []
+            },
+            "object": "position",
+            "id": "sec-s-220e8c65080c441aa87da8089460fae4",
+            "quote": {
+                "object": "spot_quote",
+                "security_id": "sec-s-220e8c65080c441aa87da8089460fae4",
+                "amount": "273.2800",
+                "currency": "USD",
+                "ask": "273.2800",
+                "ask_size": 2900,
+                "bid": "273.1900",
+                "bid_size": 3300,
+                "high": "281.8723",
+                "last_size": 844928,
+                "low": "268.0000",
+                "open": "270.1900",
+                "volume": 21422873,
+                "previous_close": "294.0700",
+                "quote_date": "2020-02-25T02:48:20.417Z"
+            },
+            "sparkline": [
+                {
+                    "date": "2020-02-21",
+                    "time": "16:00:00",
+                    "open": "294.0700",
+                    "high": "294.0700",
+                    "low": "294.0700",
+                    "close": "294.0700",
+                    "adj_close": "294.0700",
+                    "volume": 0,
+                    "currency": "USD",
+                    "security_id": "sec-s-220e8c65080c441aa87da8089460fae4",
+                    "data_source": "xignite-spot-hws"
+                },
+                ...
+            ],
+            "start_of_day_quantity": 0,
+            "start_of_day_book_value": {
+                "amount": 0,
+                "currency": "CAD"
+            },
+            "start_of_day_market_book_value": {
+                "amount": 0,
+                "currency": "USD"
+            },
+            "external_security_id": "sec-s-220e8c65080c441aa87da8089460fae4",
+            "quantity": 3,
+            "sellable_quantity": 3,
+            "created_at": "2020-02-02T17:21:24.349Z",
+            "updated_at": "2020-02-02T17:21:24.349Z",
+            "book_value_currency": "CAD",
+            "start_of_day_book_value_currency": "CAD",
+            "start_of_day_market_book_value_currency": "USD",
+            "book_value": {
+                "amount": 829.7793,
+                "currency": "USD"
+            },
+            "market_book_value": {
+                "amount": 829.266,
+                "currency": "CAD"
+            },
+            "todays_earnings_baseline_value": {
+                "amount": 829.266,
+                "currency": "USD"
+            },
+            "account_id": "00000"
+        },
+        ...
     ]
 }
 ```
@@ -580,5 +755,23 @@ GET https://trade-service.wealthsimple.com/bank-accounts
             "account_id": "non-registered-xxxx"
         }
     ]
+}
+```
+
+### Get Foreign Exchange Rate
+#### Request
+```
+GET https://trade-service.wealthsimple.com/forex
+```
+
+#### Response
+```
+{
+    "USD": {
+        "buy_rate": 1.3651,
+        "sell_rate": 1.3245,
+        "spread": 0.015,
+        "fx_rate": 1.3447
+    }
 }
 ```
