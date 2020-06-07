@@ -52,6 +52,60 @@ User data is sent back in the body:
 }
 ```
 
+
+### OTP Login
+#### Request
+```
+POST https://trade-service.wealthsimple.com/auth/login
+{
+    "email": "fred@gmail.com",
+    "password": "WILMA!!!!",
+    "otp": "123456"
+}
+```
+
+#### Response
+Check the headers for the access token. It needs to be set as the `Authorization`
+header for all other requests.
+```
+{
+    X-Access-Token  000000000000
+    X-Refresh-Token 000000000000
+}
+```
+User data is sent back in the body:
+```
+{
+    "object": "user",
+    "created_at": "2019-01-01T01:01:01.671Z",
+    "updated_at": "2019-01-01T01:01:01.671Z",
+    "canonical_id": "user-xxxxxx",
+    "external_ws_user_id": "user-xxxxx",
+    "external_hw_user_id": "user-xxxxx",
+    "external_hw_person_id": "person-xxxxx",
+    "attempted_existing_bank_account_import": true,
+    "attempted_existing_document_import": true,
+    "email_subscription_token": "xxxxxxxxxxxxxxx",
+    "email": "fred@gmail.com",
+    "first_name": "Fred",
+    "last_name": "Flintstone",
+    "feature_flags": [
+        "tfsa"
+    ],
+    "id": "user-xxxxx",
+    "external_hw_esignature_id": "document-xxxxx",
+    "account_signatures": [
+        {
+            "external_account_id": "non-registered-xxxxx",
+            "custodian_account_number": "H000000001CAD",
+            "external_esignature_id": "document-xxxxxx",
+            "opened_at": "2019-01-01",
+            "deleted_at": null
+        }
+    ]
+}
+```
+
 ### Refresh Token
 #### Request
 ````
@@ -65,7 +119,6 @@ POST https://trade-service.wealthsimple.com/auth/refresh
 ```
     OK
 ```
-
 
 ### Account
 #### Request
