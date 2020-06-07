@@ -65,6 +65,14 @@ POST https://trade-service.wealthsimple.com/auth/login
 ```
 
 #### Response
+Check the headers for the access token. It needs to be set as the `Authorization`
+header for all other requests.
+```
+{
+    X-Access-Token  000000000000
+    X-Refresh-Token 000000000000
+}
+```
 User data is sent back in the body:
 ```
 {
