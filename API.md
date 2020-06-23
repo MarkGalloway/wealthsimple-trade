@@ -329,7 +329,7 @@ POST https://trade-service.wealthsimple.com/orders
 
 #### Request
 ```
-DELETE https://trade-service.wealthsimple.com/order-xxxxxx
+DELETE https://trade-service.wealthsimple.com/orders/order-xxxxxx
 ```
 
 
