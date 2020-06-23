@@ -646,7 +646,7 @@ GET https://trade-service.wealthsimple.com/me
             "deleted_at": null
         }
     ],
-    "email_confirmed": truw
+    "email_confirmed": true
 }
 ```
 
@@ -782,7 +782,7 @@ GET https://trade-service.wealthsimple.com/bank-accounts
 ### Get Deposits
 #### Request
 ```
-GET https://trade-service.wealthsimple.com/bank-accounts
+GET https://trade-service.wealthsimple.com/deposits
 ```
 
 #### Response
