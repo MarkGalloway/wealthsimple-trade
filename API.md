@@ -1,7 +1,9 @@
 # Wealthsimple Trade API
 
 ### Login
+
 #### Request
+
 ```
 POST https://trade-service.wealthsimple.com/auth/login
 {
@@ -11,15 +13,19 @@ POST https://trade-service.wealthsimple.com/auth/login
 ```
 
 #### Response
+
 Check the headers for the access token. It needs to be set as the `Authorization`
 header for all other requests.
+
 ```
 {
     X-Access-Token  000000000000
     X-Refresh-Token 000000000000
 }
 ```
+
 User data is sent back in the body:
+
 ```
 {
     "object": "user",
@@ -52,9 +58,10 @@ User data is sent back in the body:
 }
 ```
 
-
 ### OTP Login
+
 #### Request
+
 ```
 POST https://trade-service.wealthsimple.com/auth/login
 {
@@ -65,15 +72,19 @@ POST https://trade-service.wealthsimple.com/auth/login
 ```
 
 #### Response
+
 Check the headers for the access token. It needs to be set as the `Authorization`
 header for all other requests.
+
 ```
 {
     X-Access-Token  000000000000
     X-Refresh-Token 000000000000
 }
 ```
+
 User data is sent back in the body:
+
 ```
 {
     "object": "user",
@@ -107,26 +118,32 @@ User data is sent back in the body:
 ```
 
 ### Refresh Token
+
 #### Request
-````
+
+```
 POST https://trade-service.wealthsimple.com/auth/refresh
 {
     "refresh_token": <X-Refresh-Token from initial login request>
 }
-````
+```
 
 #### Response
+
 ```
     OK
 ```
 
 ### Account
+
 #### Request
-````
+
+```
 GET https://trade-service.wealthsimple.com/account/list
-````
+```
 
 #### Response
+
 ```
 {
     "object": "account",
@@ -168,14 +185,17 @@ GET https://trade-service.wealthsimple.com/account/list
 ```
 
 ### Historical Account Data
+
 #### Request
-````
+
+```
 GET https://trade-service.wealthsimple.com/account/history/<TIME>?account_id=<ACCOUNT>
 Where TIME is one of [1d, 1w, 1m, 3m, 1y, all]
 Where ACCOUNT is the account id received from /account/list Ex. rrsp-123_abc
-````
+```
 
 #### Response
+
 ```
 {
     "results": [
@@ -229,13 +249,17 @@ Where ACCOUNT is the account id received from /account/list Ex. rrsp-123_abc
 ```
 
 ### Get Orders
+
 This is current and past orders.
+
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/orders
 ```
 
 #### Response
+
 ```
 {
     "results": [
@@ -273,10 +297,10 @@ GET https://trade-service.wealthsimple.com/orders
 }
 ```
 
-
 ### Place Order
 
 #### Request
+
 ```
 POST https://trade-service.wealthsimple.com/orders
 {
@@ -292,6 +316,7 @@ POST https://trade-service.wealthsimple.com/orders
 ```
 
 #### Response
+
 ```
 {
     "object": "order",
@@ -324,23 +349,24 @@ POST https://trade-service.wealthsimple.com/orders
 
 ```
 
-
 ### Cancel/Delete Order
 
 #### Request
+
 ```
 DELETE https://trade-service.wealthsimple.com/orders/order-xxxxxx
 ```
 
-
 ### Find Securities
 
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/securities?query=AAPL
 ```
 
 #### Response
+
 ```
 {
     "object": "security",
@@ -414,15 +440,178 @@ GET https://trade-service.wealthsimple.com/securities?query=AAPL
 }
 ```
 
+### Get Security with Security ID
+
+#### Request
+
+```
+GET https://trade-service.wealthsimple.com/securities/sec-s-76a7155242e8477880cbb43269235cb6
+```
+
+#### Response
+
+```
+{
+   "currency":"USD",
+   "security_type":"equity",
+   "ws_trade_eligible":True,
+   "cds_eligible":True,
+   "active_date":"1980-12-12",
+   "inactive_date":"None",
+   "active":True,
+   "buyable":True,
+   "sellable":True,
+   "groups":[
+        {
+            "id": "security-group-219397c25933",
+            "name_en": "Mobile"
+        },
+        {
+            "id": "security-group-3dd224bd2e62",
+            "name_en": "Manufacturing"
+        },
+        {
+            "id": "security-group-56c3bcb832e2",
+            "name_en": "Electronics"
+        },
+        {
+            "id": "security-group-bf8b024fd382",
+            "name_en": "Retail"
+        },
+        {
+            "id": "security-group-bfcac6510177",
+            "name_en": "Entertainment and Media"
+        },
+        {
+            "id": "security-group-c02ac2385470",
+            "name_en": "Software"
+        },
+        {
+            "id": "security-group-c87a753c998c",
+            "name_en": "Consumer Products"
+        },
+        {
+            "id": "security-group-cb7e98a45f68",
+            "name_en": "Internet"
+        },
+        {
+            "id": "security-group-f68970b1232b",
+            "name_en": "Technology"
+        }
+   ],
+   "status":"None",
+   "stock":{
+      "allowed_account_types":[
+         "ca_individual_pension_plan",
+         "ca_investment_club",
+         "ca_individual",
+         "ca_group_rsp",
+         "ca_lira",
+         "ca_family_resp",
+         "ca_formal_trust",
+         "ca_tfsa",
+         "ca_spousal_rsp",
+         "ca_individual_rif",
+         "ca_spousal_rif",
+         "ca_lrif_lif",
+         "ca_corporate",
+         "ca_payable_receivable",
+         "ca_individual_rsp",
+         "ca_joint",
+         "ca_individual_resp"
+      ],
+      "asset_category":"SHARES",
+      "avg_daily_volume_last_month":"34323349.5000",
+      "country_of_issue":"US",
+      "description":"None",
+      "name":"Apple Inc",
+      "primary_exchange":"NASDAQ",
+      "primary_exchange_country":"US",
+      "reuters_attributes":"None",
+      "secondary_exchanges":[
+
+      ],
+      "security_type":"EQUITY",
+      "symbol":"AAPL"
+   },
+   "asset_class":"us_stocks",
+   "ca_mutual_fund":"None",
+   "created_by":"sysadmin",
+   "default_quote_data_source":"xignite",
+   "euro_mutual_fund":"None",
+   "fx_rate":"None",
+   "investment_type":"equity",
+   "is_invalid":"None",
+   "management_expense_ratio":"None",
+   "manually_entered_security":"None",
+   "object":"security",
+   "price_interface_symbol":"None",
+   "quote_expiry_minutes":30,
+   "security_entity":"None",
+   "settlement_period_business_days":2,
+   "skip_sync":False,
+   "updated_by":"sysadmin",
+   "updated_reason":"None",
+   "ws_tradability_overwrite":"None",
+   "id":"sec-s-76a7155242e8477880cbb43269235cb6",
+   "fundamentals":{
+      "description":"Apple Company Description",
+      "low_52_week":201,
+      "high_52_week":464.17,
+      "market_cap":1965207.8169,
+      "beta":1.1511,
+      "pe_ratio":34.93,
+      "eps":13.1572,
+      "avg_volume":34323349.5,
+      "yield":0.0069,
+      "currency":"USD",
+      "company_cash":27295,
+      "company_revenue":273420,
+      "company_ceo":"Tim Cook, MBA",
+      "company_debt":122186,
+      "total_assets":317344,
+      "company_hq_location":"US",
+      "company_earnings_growth":12.2316,
+      "inception_year":1976,
+      "company_gross_profit_margin":38.2123,
+      "number_of_employees":137000,
+      "ex_div_date":"2020-05-08T00:00:00",
+      "industry_name":"Telecommunications Equipment",
+      "website":"http://www.apple.com",
+      "object":"fundamentals",
+      "id":"sec-s-76a7155242e8477880cbb43269235cb6"
+   },
+   "quote":{
+      "object":"spot_quote",
+      "security_id":"sec-s-76a7155242e8477880cbb43269235cb6",
+      "amount":"459.6300",
+      "currency":"USD",
+      "ask":"459.8000",
+      "ask_size":1800,
+      "bid":"459.6800",
+      "bid_size":100,
+      "high":"460.0000",
+      "last_size":978153,
+      "low":"452.1800",
+      "open":"459.3150",
+      "volume":41391302,
+      "previous_close":"460.0400",
+      "previous_closed_at":"2020-08-13T20:00:00.000Z",
+      "quote_date":"2020-08-17T00:50:44.512Z"
+   }
+}
+```
 
 ### Get Positions
 
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/account/positions
 ```
 
 #### Response
+
 ```
 {
     "results": [
@@ -548,11 +737,13 @@ GET https://trade-service.wealthsimple.com/account/positions
 ### Get Activities
 
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/account/activities
 ```
 
 #### Response
+
 ```
 {
     "results": [
@@ -608,15 +799,18 @@ GET https://trade-service.wealthsimple.com/account/activities
 }
 ```
 
-
 ### Get Me
+
 Gets the user object
+
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/me
 ```
 
 #### Response
+
 ```
 {
     "object": "user",
@@ -650,15 +844,18 @@ GET https://trade-service.wealthsimple.com/me
 }
 ```
 
-
 ### Get Person
+
 Detailed information about the account holder
+
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/person
 ```
 
 #### Response
+
 ```
 {
     "id": "person-xxxxx",
@@ -735,14 +932,16 @@ GET https://trade-service.wealthsimple.com/person
 }
 ```
 
-
 ### Get Bank accounts
+
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/bank-accounts
 ```
 
 #### Response
+
 ```
 {
     "object": "bank_account",
@@ -778,14 +977,16 @@ GET https://trade-service.wealthsimple.com/bank-accounts
 }
 ```
 
-
 ### Get Deposits
+
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/deposits
 ```
 
 #### Response
+
 ```
 {
     "object": "deposit",
@@ -812,12 +1013,15 @@ GET https://trade-service.wealthsimple.com/deposits
 ```
 
 ### Get Foreign Exchange Rate
+
 #### Request
+
 ```
 GET https://trade-service.wealthsimple.com/forex
 ```
 
 #### Response
+
 ```
 {
     "USD": {
